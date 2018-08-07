@@ -19,21 +19,22 @@ $ composer require cross/laravel-cors dev-master
 ```
 config/app.php
 
+```
+
 'providers' => [
     ...
-    Rbrm\Larauth\Providers\AuthProvider::class,
+    Cross\Cors\ServiceProvider::class,
     ...
 ],
 
 'aliases' => [
     ...
-    'Larauth' => Rbrm\Larauth\Facades\Larauth::class,
+    'cors' => \Cross\Cors\FacadeCors::class,
     ...
 ]
-
-
-
-```App/Http/Kernel.php
+```
+App/Http/Kernel.php
+```
 
 $app->routeMiddleware([
     // ...
