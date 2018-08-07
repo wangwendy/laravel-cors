@@ -1,29 +1,20 @@
-# CORS Middleware for Laravel 5
-
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Total Downloads][ico-downloads]][link-downloads]
-
-
-## About
-
-The `laravel-cors` package allows you to send [Cross-Origin Resource Sharing](http://enable-cors.org/)
-headers with Laravel middleware configuration.
-
-If you want to have have a global overview of CORS workflow, you can  browse
-this [image](http://www.html5rocks.com/static/images/cors_server_flowchart.png).
-
-## Features
-
-* Handles CORS pre-flight OPTIONS requests
-* Adds CORS headers to your responses
 
 ## Installation
 
+composer.json
+ "repositories": {
+           ...
+           
+          "cross" : {
+            "type" : "composer",
+            "url": "https://packagist.org"
+        }
+           
+           ...
+       }
 Require the `cross/laravel-cors` package in your `composer.json` and update your dependencies:
 ```sh
-$ composer require cross/laravel-cors
+$ composer require cross/laravel-cors dev-master
 ```
 
 For laravel >=5.5 that's all. This package supports Laravel new [Package Discovery](https://laravel.com/docs/5.5/packages#package-discovery).
@@ -154,17 +145,5 @@ protected $except = [
 
 Released under the MIT License, see [LICENSE](LICENSE).
 
-[ico-version]: https://img.shields.io/packagist/v/barryvdh/laravel-cors.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/barryvdh/laravel-cors/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/barryvdh/laravel-cors.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/barryvdh/laravel-cors.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/barryvdh/laravel-cors.svg?style=flat-square
-
-[link-packagist]: https://packagist.org/packages/barryvdh/laravel-cors
-[link-travis]: https://travis-ci.org/barryvdh/laravel-cors
-[link-scrutinizer]: https://scrutinizer-ci.com/g/barryvdh/laravel-cors/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/barryvdh/laravel-cors
-[link-downloads]: https://packagist.org/packages/barryvdh/laravel-cors
-[link-author]: https://github.com/barryvdh
-[link-contributors]: ../../contributors
+[link-packagist]: https://packagist.org/packages/cross/laravel-cors
+[link-downloads]: https://packagist.org/packages/cross/laravel-cors
