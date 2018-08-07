@@ -6,7 +6,7 @@ composer.json
       "repositories": {
            ...
            
-           "filesystem" : {
+           "cross" : {
                "type": "composer",
                "url": "https://packagist.org"
            },
