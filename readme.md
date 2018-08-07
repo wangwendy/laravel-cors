@@ -17,40 +17,28 @@ Require the `cross/laravel-cors` package in your `composer.json` and update your
 ```sh
 $ composer require cross/laravel-cors dev-master
 ```
+config/app.php
 
-For laravel >=5.5 that's all. This package supports Laravel new [Package Discovery](https://laravel.com/docs/5.5/packages#package-discovery).
+'providers' => [
+    ...
+    Rbrm\Larauth\Providers\AuthProvider::class,
+    ...
+],
 
-If you are using Laravel < 5.5, you also need to add Cors\ServiceProvider to your `config/app.php` providers array:
-```php
-Cross\Cors\ServiceProvider::class,
-```
+'aliases' => [
+    ...
+    'Larauth' => Rbrm\Larauth\Facades\Larauth::class,
+    ...
+]
 
-## Global usage
 
-To allow CORS for all your routes, add the `HandleCors` middleware in the `$middleware` property of  `app/Http/Kernel.php` class:
 
-```php
-protected $middleware = [
+```App/Http/Kernel.php
+
+$app->routeMiddleware([
     // ...
-    \Cross\Cors\HandleCors::class,
-];
-```
-
-## Group middleware
-
-If you want to allow CORS on a specific middleware group or route, add the `HandleCors` middleware to your group:
-
-```php
-protected $middlewareGroups = [
-    'web' => [
-       // ...
-    ],
-
-    'api' => [
-        // ...
-        \Cross\Cors\HandleCors::class,
-    ],
-];
+    'cors' => \Cross\Cors\HandleCors::class,
+]);
 ```
 
 ## Configuration
@@ -86,62 +74,7 @@ return [
 
 `allowedOrigins`, `allowedHeaders` and `allowedMethods` can be set to `array('*')` to accept any value.
 
-> **Note:** Try to be a specific as possible. You can start developing with loose constraints, but it's better to be as strict as possible!
 
-> **Note:** Because of [http method overriding](http://symfony.com/doc/current/reference/configuration/framework.html#http-method-override) in Laravel, allowing POST methods will also enable the API users to perform PUT and DELETE requests as well.
-
-### Lumen
-
-On Laravel Lumen, load your configuration file manually in `bootstrap/app.php`:
-```php
-$app->configure('cors');
-```
-
-And register the ServiceProvider:
-
-```php
-$app->register(Cross\Cors\ServiceProvider::class);
-```
-
-## Global usage for Lumen
-To allow CORS for all your routes, add the `HandleCors` middleware to the global middleware:
-```php
-$app->middleware([
-    // ...
-    \Cross\Cors\HandleCors::class,
-]);
-```
-
-## Group middleware for Lumen
-If you want to allow CORS on a specific middleware group or route, add the `HandleCors` middleware to your group:
-
-```php
-$app->routeMiddleware([
-    // ...
-    'cors' => \Cross\Cors\HandleCors::class,
-]);
-```
-
-## Common problems and errors (Pre Laravel 5.3)
-In order for the package to work, the request has to be a valid CORS request and needs to include an "Origin" header.
-
-When an error occurs, the middleware isn't run completely. So when this happens, you won't see the actual result, but will get a CORS error instead.
-
-This could be a CSRF token error or just a simple problem.
-
-> **Note:** This should be working in Laravel 5.3+.
-
-### Disabling CSRF protection for your API
-
-If possible, use a different route group with CSRF protection enabled. 
-Otherwise you can disable CSRF for certain requests in `App\Http\Middleware\VerifyCsrfToken`:
-
-```php
-protected $except = [
-    'api/*'
-];
-```
-    
 ## License
 
 Released under the MIT License, see [LICENSE](LICENSE).
