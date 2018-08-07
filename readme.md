@@ -3,17 +3,14 @@
 
 composer.json
 
-
- "repositories": {
-           ...
-           
-          "cross" : {
+"repositories": {
+       ...
+        "cross" : {
             "type" : "composer",
             "url": "https://packagist.org"
-          }
-           
-           ...
-       }
+        }
+       ...
+    }
 Require the `cross/laravel-cors` package in your `composer.json` and update your dependencies:
 ```sh
 $ composer require cross/laravel-cors dev-master
