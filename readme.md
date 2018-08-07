@@ -29,7 +29,7 @@ config/app.php
 
 'aliases' => [
     ...
-    'cors' => \Cross\Cors\FacadeCors::class,
+    'cors' => Cross\Cors\FacadeCors::class,
     ...
 ]
 ```
