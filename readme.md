@@ -2,13 +2,15 @@
 ## Installation
 
 composer.json
+
+
  "repositories": {
            ...
            
           "cross" : {
             "type" : "composer",
             "url": "https://packagist.org"
-        }
+          }
            
            ...
        }
